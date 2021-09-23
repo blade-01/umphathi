@@ -141,9 +141,6 @@ export default {
   border-radius: 15px 15px 0 0;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
     0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-  /* backdrop-filter: blur(10.5px);
-  -webkit-backdrop-filter: (10.5px); */
-  /* border: 1px solid rgba(255, 255, 255, 0.18); */
   background: var(--bg);
   animation: bottom 0.5s ease forwards;
   z-index: 1000;

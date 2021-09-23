@@ -1,7 +1,7 @@
 const state = {
   employees: [
     {
-      id: 1,
+      id: "FDGMM8",
       firstName: "Blade",
       lastName: "Barry",
       role: "Designer",
@@ -16,7 +16,7 @@ const state = {
       address: "New Jersy, Ologo Milk",
     },
     {
-      id: 2,
+      id: "JGEED7",
       firstName: "Taofiq",
       lastName: "Animashaun",
       role: "Frontend Developer",
@@ -32,7 +32,7 @@ const state = {
       address: "Bankole Street, Agege, Lagos",
     },
     {
-      id: 3,
+      id: "KEF301",
       firstName: "Jane",
       lastName: "Doe",
       role: "Backend Developer",
@@ -47,7 +47,7 @@ const state = {
       address: "Jand Way, Ijaniki",
     },
     {
-      id: 4,
+      id: "MK1JL3",
       firstName: "Mary",
       lastName: "Jane",
       role: "Dev Ops",
@@ -62,7 +62,7 @@ const state = {
       address: "Jand Way, Ijaniki",
     },
     {
-      id: 5,
+      id: "OMO419",
       firstName: "Kane",
       lastName: "Radley",
       role: "Fullstack Developer",

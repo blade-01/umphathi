@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkumphathi"]=self["webpackChunkumphathi"]||[]).push([[969],{4969:function(e,a,n){n.r(a),n.d(a,{default:function(){return c}});var t=n(6252);(0,t.dD)("data-v-278251b4");const r={class:"message"},u=(0,t._)("p",null,"There is nothing here",-1),s=(0,t._)("p",null," Your messages would appear here once you start chatting with your employees ",-1),h=[u,s];function i(e,a,n,u,s,i){return(0,t.wg)(),(0,t.iD)("div",r,h)}(0,t.Cn)();var o={};o.render=i,o.__scopeId="data-v-278251b4";var c=o}}]);
-//# sourceMappingURL=969.5a4e01d9.js.map

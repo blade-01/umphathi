@@ -2,8 +2,7 @@
   <div class="notification">
     <p>There is nothing here</p>
     <p>
-      Your notifications would appear here once you start adding your
-      employees
+      Your notifications would appear here once you start adding your employees
     </p>
   </div>
 </template>

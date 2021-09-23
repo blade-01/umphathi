@@ -42,19 +42,16 @@ export default {
 .home-content {
   margin: 3rem 0;
 }
-.links {
-  margin-bottom: 2rem;
-}
 .links .btn {
   display: block;
-  margin: 0.5rem auto;
+  margin: 0.5rem auto 0;
   border-radius: 50px;
   border: solid 1px var(--btn);
   background: var(--btn);
   color: var(--white);
   text-transform: capitalize;
   font-size: 15px;
-  padding: 0.7rem 2rem;
+  padding: 0.8rem 2rem;
 }
 .home-content {
   display: flex;
@@ -81,9 +78,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .links .btn {
-    padding: 0.6rem 2rem;
   }
 }
 @media screen and (min-width: 700px) {

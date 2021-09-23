@@ -6,10 +6,7 @@
         <p>Hi there 👋</p>
       </div>
       <div class="flex-between">
-        <router-link
-          to="/notification"
-          class="mdi mdi-bell"
-        ></router-link>
+        <router-link to="/notification" class="mdi mdi-bell"></router-link>
         <router-link to="/profile" class="user">
           <img src="@/assets/img/user.jpg" alt="user" />
         </router-link>

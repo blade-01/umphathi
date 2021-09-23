@@ -35,9 +35,14 @@
         </div>
         <div class="input-field">
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" v-model="form.email" @blur="v$.email.$touch()"
-          @focus="v$.email.$reset()"
-          :class="{ err: v$.email.$error }"
+          <input
+            type="email"
+            name="email"
+            id="email"
+            v-model="form.email"
+            @blur="v$.email.$touch()"
+            @focus="v$.email.$reset()"
+            :class="{ err: v$.email.$error }"
           />
           <small :class="{ 'err-mssg': v$.email.$error }" class="hide"
             >Please provide a valid email</small
@@ -56,17 +61,22 @@
           @blur="v$.address.$touch()"
           @focus="v$.address.$reset()"
           :class="{ err: v$.address.$error }"
-          ></textarea>
-          <small :class="{ 'err-mssg': v$.address.$error }" class="hide"
-            >required</small
-          >
+        ></textarea>
+        <small :class="{ 'err-mssg': v$.address.$error }" class="hide"
+          >required</small
+        >
       </div>
       <div class="flex-two">
         <div class="input-field">
           <label for="state">State</label>
-          <input type="text" name="state" id="state" v-model="form.state"  @blur="v$.state.$touch()"
-          @focus="v$.state.$reset()"
-          :class="{ err: v$.state.$error }"
+          <input
+            type="text"
+            name="state"
+            id="state"
+            v-model="form.state"
+            @blur="v$.state.$touch()"
+            @focus="v$.state.$reset()"
+            :class="{ err: v$.state.$error }"
           />
           <small :class="{ 'err-mssg': v$.state.$error }" class="hide"
             >required</small
@@ -74,9 +84,14 @@
         </div>
         <div class="input-field">
           <label for="city">City</label>
-          <input type="text" name="city" id="city" v-model="form.city"  @blur="v$.city.$touch()"
-          @focus="v$.city.$reset()"
-          :class="{ err: v$.city.$error }"
+          <input
+            type="text"
+            name="city"
+            id="city"
+            v-model="form.city"
+            @blur="v$.city.$touch()"
+            @focus="v$.city.$reset()"
+            :class="{ err: v$.city.$error }"
           />
           <small :class="{ 'err-mssg': v$.city.$error }" class="hide"
             >required</small
@@ -91,7 +106,7 @@
             name="mobile"
             id="mobile"
             v-model="form.mobileNumber"
-           @blur="v$.mobileNumber.$touch()"
+            @blur="v$.mobileNumber.$touch()"
             @focus="v$.mobileNumber.$reset()"
             :class="{ err: v$.mobileNumber.$error }"
           />
@@ -106,7 +121,7 @@
             name="emergencyNumber"
             id="emergencyNumber"
             v-model="form.emergencyNumber"
-           @blur="v$.emergencyNumber.$touch()"
+            @blur="v$.emergencyNumber.$touch()"
             @focus="v$.emergencyNumber.$reset()"
             :class="{ err: v$.emergencyNumber.$error }"
           />
@@ -123,7 +138,7 @@
             name="postCode"
             id="postCode"
             v-model="form.postCode"
-           @blur="v$.postCode.$touch()"
+            @blur="v$.postCode.$touch()"
             @focus="v$.postCode.$reset()"
             :class="{ err: v$.postCode.$error }"
           />
@@ -138,7 +153,7 @@
             name="joinDate"
             id="joinDate"
             v-model="form.joinDate"
-           @blur="v$.joinDate.$touch()"
+            @blur="v$.joinDate.$touch()"
             @focus="v$.joinDate.$reset()"
             :class="{ err: v$.joinDate.$error }"
           />
@@ -150,18 +165,28 @@
       <div class="flex-two">
         <div class="input-field">
           <label for="role">Job Designation</label>
-          <input type="text" name="role" id="role" v-model="form.role" @blur="v$.role.$touch()"
+          <input
+            type="text"
+            name="role"
+            id="role"
+            v-model="form.role"
+            @blur="v$.role.$touch()"
             @focus="v$.role.$reset()"
-            :class="{ err: v$.role.$error }" />
+            :class="{ err: v$.role.$error }"
+          />
           <small :class="{ 'err-mssg': v$.gender.$error }" class="hide"
             >required</small
           >
         </div>
         <div class="input-field">
           <label for="gender">Gender</label>
-          <select id="gender" v-model="form.gender" @blur="v$.gender.$touch()"
+          <select
+            id="gender"
+            v-model="form.gender"
+            @blur="v$.gender.$touch()"
             @focus="v$.gender.$reset()"
-            :class="{ err: v$.gender.$error }">
+            :class="{ err: v$.gender.$error }"
+          >
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
@@ -230,7 +255,7 @@ export default {
       goHome,
       v$,
       form,
-      editEmployee
+      editEmployee,
     };
   },
 };
