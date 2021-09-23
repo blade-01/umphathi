@@ -1,12 +1,11 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import store from './store'
-import router from './router'
-import '@mdi/font/css/materialdesignicons.css'
+import { createApp } from "vue";
+import App from "./App.vue";
+import store from "./store";
+import router from "./router";
+import "@mdi/font/css/materialdesignicons.css";
 
+const app = createApp(App);
 
-const app = createApp(App)
-
-app.use(store)
-app.use(router)
-app.mount('#app')
+app.use(store);
+app.use(router);
+app.mount("#app");

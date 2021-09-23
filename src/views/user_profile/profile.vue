@@ -2,15 +2,28 @@
   <div class="user_profile" v-if="edit">
     <div class="profile">
       <div class="profile-content">
-        <img src="@/assets/img/user.jpg" alt="" srcset="">
+        <img src="@/assets/img/user.jpg" alt="" srcset="" />
         <div class="flex-user">
-          <h3>Animashaun Taofiq <router-link to="/settings" class="mdi mdi-pencil"></router-link></h3>
+          <h3>
+            Animashaun Taofiq
+            <router-link
+              to="/edit_profile"
+              class="mdi mdi-pencil"
+            ></router-link>
+          </h3>
           <small>animashauntaofiq@gmail.com</small>
         </div>
       </div>
     </div>
     <div class="profile-dets">
-      <p>Hi 👋. I'm a frontend developer with passion for creating user-friendly, interactive and pixel-perfect user interface.  creating user-friendly, interactive and pixel-perfect user interface creating user-friendly, interactive and pixel-perfect user interface creating user-friendly, interactive and pixel-perfect user interface creating user-friendly, interactive and pixel-perfect user interface</p>
+      <p>
+        Hi 👋. I'm a frontend developer with passion for creating user-friendly,
+        interactive and pixel-perfect user interface. creating user-friendly,
+        interactive and pixel-perfect user interface creating user-friendly,
+        interactive and pixel-perfect user interface creating user-friendly,
+        interactive and pixel-perfect user interface creating user-friendly,
+        interactive and pixel-perfect user interface
+      </p>
     </div>
   </div>
   <div class="add_user" v-else>
@@ -19,21 +32,21 @@
   </div>
 </template>
 <script>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 export default {
   setup() {
-    const edit = ref(false)
-    const router = useRouter()
+    const edit = ref(true);
+    const router = useRouter();
     const editPage = () => {
-      router.push('/edit_profile')
-    }
+      router.push("/edit_profile");
+    };
     return {
       edit,
-      editPage
-    }
-  }
-}
+      editPage,
+    };
+  },
+};
 </script>
 <style scoped>
 .profile {
@@ -42,7 +55,7 @@ export default {
   left: 0;
   width: 100%;
   z-index: 1;
-  background: url('@/assets/img/bg-03.jpg') no-repeat center center/cover;
+  background: url("@/assets/img/bg-03.jpg") no-repeat center center/cover;
   background-color: var(--mainbar);
   height: 150px;
   backdrop-filter: blur(10.5px);

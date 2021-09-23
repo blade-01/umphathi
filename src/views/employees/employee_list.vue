@@ -61,23 +61,24 @@ export default {
       router.push({ name: "employee", params: { id } });
     };
     const addEmployee = () => {
-      router.push('/add')
-    }
+      router.push("/add");
+    };
     const formatDate = (date) => {
-      return moment(date).format("DD MMM YYYY")
+      return moment(date).format("DD MMM YYYY");
     };
     return {
       employees,
       viewEmployee,
       formatDate,
-      addEmployee
+      addEmployee,
     };
   },
 };
 </script>
 <style scoped>
 .employee_dets {
-  border: 1px solid #f4f4f4;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   background: var(--white);
   margin: 0.5rem 0.1rem;
   border-radius: 5px;
@@ -88,7 +89,8 @@ export default {
   transition: all ease 0.4s;
 }
 .employee_dets:hover {
-  box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 .dash {
   margin: 1rem 0;

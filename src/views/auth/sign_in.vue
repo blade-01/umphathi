@@ -2,15 +2,44 @@
   <div class="container">
     <div class="sign_in">
       <Header />
-      <form class="card" @submit.prevent="login">
+      <form class="card" @submit.prevent="signIn(state.email, state.password)">
         <h2>Sign in to your account</h2>
+        <div class="error" :class="{ err: errMssg }" v-if="errMssg">
+          {{ errMssg }}
+        </div>
         <div class="input-field">
           <label for="email">Email</label>
-          <input type="email" id="email" />
+          <input
+            type="email"
+            id="email"
+            v-model="state.email"
+            @blur="v$.email.$touch()"
+            @focus="v$.email.$reset()"
+            :class="{ err: v$.email.$error }"
+          />
+          <small
+            :class="{ 'err-mssg': v$.email.$error }"
+            v-if="v$.email.$error"
+            class="hide"
+            >Please provide a valid email</small
+          >
         </div>
         <div class="input-field">
           <label for="password">Password</label>
-          <input type="password" id="password" />
+          <input
+            type="password"
+            id="password"
+            v-model="state.password"
+            @blur="v$.password.$touch()"
+            @focus="v$.password.$reset()"
+            :class="{ err: v$.password.$error }"
+          />
+          <small
+            :class="{ 'err-mssg': v$.password.$error }"
+            v-if="v$.password.$error"
+            class="hide"
+            >Ensure your password is correct</small
+          >
         </div>
         <input type="submit" value="SIGN IN" />
       </form>
@@ -28,20 +57,41 @@
 </template>
 <script>
 import Header from "@/components/reusables_/Header.vue";
-import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+import { computed, ref } from "vue";
+import { required, email, minLength } from "@vuelidate/validators";
+import useVuelidate from "@vuelidate/core";
 export default {
   components: {
     Header,
   },
   setup() {
-    const router = useRouter();
-    const login = () => {
-      router.push("/employee_list");
+    const store = useStore();
+    const state = ref({
+      email: "",
+      password: "",
+    });
+    const validations = {
+      email: { required, email },
+      password: {
+        required,
+        minLength: minLength(6),
+      },
     };
-
+    const validate = () => {
+      v$.value.$validate();
+    };
+    const signIn = (email, password) => {
+      store.dispatch("signIn", { email, password });
+      validate();
+    };
+    const v$ = useVuelidate(validations, state);
+    const errMssg = computed(() => store.getters.errorMssg);
     return {
-      login,
-      router,
+      state,
+      signIn,
+      errMssg,
+      v$,
     };
   },
 };
@@ -71,6 +121,9 @@ export default {
   margin: 0.7rem 0;
   border: solid 1px var(--gray-blue);
 }
+.card label {
+  color: gray;
+}
 .card input[type="submit"] {
   text-transform: uppercase;
   font-weight: bold;
@@ -93,6 +146,24 @@ export default {
 }
 .color a {
   color: var(--btn);
+}
+.error {
+  text-align: center;
+  margin-top: 1rem;
+  background: #fa5d5d;
+  color: var(--white);
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+.err {
+  border: solid 1px #fa5d5d !important;
+}
+.err-mssg {
+  color: #fa5d5d !important;
+}
+.hide {
+  color: transparent;
+  transition: color ease 0.4s;
 }
 @media screen and (min-width: 700px) {
   .sign_in {

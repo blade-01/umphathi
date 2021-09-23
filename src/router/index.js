@@ -92,7 +92,7 @@ const routes = [
           import(
             /* webpackChunkName *notification* */ "@/views/user_profile/notification.vue"
           ),
-      }
+      },
     ],
   },
 ];

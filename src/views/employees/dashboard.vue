@@ -18,7 +18,7 @@ import { useRouter } from "vue-router";
 export default {
   components: {
     sidebar,
-    headtag
+    headtag,
   },
   setup() {
     const router = useRouter();

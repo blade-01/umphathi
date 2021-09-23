@@ -35,9 +35,14 @@
         </div>
         <div class="input-field">
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" v-model="user.email" @blur="v$.email.$touch()"
-          @focus="v$.email.$reset()"
-          :class="{ err: v$.email.$error }"
+          <input
+            type="email"
+            name="email"
+            id="email"
+            v-model="user.email"
+            @blur="v$.email.$touch()"
+            @focus="v$.email.$reset()"
+            :class="{ err: v$.email.$error }"
           />
           <small :class="{ 'err-mssg': v$.email.$error }" class="hide"
             >Please provide a valid email</small
@@ -56,10 +61,10 @@
           @blur="v$.address.$touch()"
           @focus="v$.address.$reset()"
           :class="{ err: v$.address.$error }"
-          ></textarea>
-          <small :class="{ 'err-mssg': v$.address.$error }" class="hide"
-            >Just a little info about yourself, no?</small
-          >
+        ></textarea>
+        <small :class="{ 'err-mssg': v$.address.$error }" class="hide"
+          >Just a little info about yourself, no?</small
+        >
       </div>
       <buttons>
         <div class="input-field flex-buttons">
@@ -122,7 +127,7 @@ export default {
       goHome,
       v$,
       user,
-      save
+      save,
     };
   },
 };
