@@ -25,6 +25,9 @@ const routes = [
       import(
         /* webpackChunkName *dashboard* */ "@/views/employees/dashboard.vue"
       ),
+    meta: {
+      requiresAuth: true
+    },
     children: [
       {
         path: "employee/:id",
@@ -101,5 +104,44 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+
+// // Nav Guards
+// router.beforeEach((to, from, next) => {
+//   // Check for requriedAuth guard
+//   if(to.matched.some(record => record.meta.requiresAuth)) {
+//     // Check if not logged in
+//     if(!firebase.auth().currentUser) {
+//       // Go to login
+//       next({
+//         path: '/login',
+//         query: {
+//           redirect: to.fullPath
+//         }
+//       })
+//     }
+//     else {
+//       // Proceed to route
+//       next();
+//     }
+//   } else if (to.matched.some(record => record.meta.requiresGuest)) {
+//     // Check if logged in
+//     if(firebase.auth().currentUser) {
+//       // Go to homepage
+//       next({
+//         path: '/employee_list',
+//         query: {
+//           redirect: to.fullPath
+//         }
+//       })
+//     }
+//     else {
+//       // Proceed to route
+//       next();
+//     }
+//   } else {
+//     // Proceed to route
+//     next();
+//   }
+// })
 
 export default router;

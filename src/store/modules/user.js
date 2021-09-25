@@ -1,4 +1,4 @@
-import { useRouter } from "vue-router";
+import router from "@/router";
 import firebaseApp from "@/fb/init-firebase";
 import {
   getAuth,
@@ -20,9 +20,8 @@ const actions = {
     const auth = getAuth(firebaseApp);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-        const router = useRouter();
+        const user = userCredential.user.email;
+        console.log(user, 'account has signed in');
         router.push("/employee_list");
         commit("signIn");
       })
@@ -40,14 +39,15 @@ const actions = {
     const auth = getAuth(firebaseApp);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
+        const user = userCredential.user.email;
+        console.log(user, 'account has been created');
+        router.push("/employee_list");
         commit("signUp");
       })
       .catch((error) => {
         let errorMessage = error.code;
         if (errorMessage == "auth/email-already-in-use") {
-          errorMessage = "User already exists";
+          errorMessage = "Account already exists";
         } else {
           errorMessage = "";
         }

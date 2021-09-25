@@ -5,11 +5,7 @@
         <img src="@/assets/img/user.jpg" alt="" srcset="" />
         <div class="flex-user">
           <h3>
-            Animashaun Taofiq
-            <router-link
-              to="/edit_profile"
-              class="mdi mdi-pencil"
-            ></router-link>
+            <router-link to="/edit_profile">Animashaun Taofiq</router-link>
           </h3>
           <small>animashauntaofiq@gmail.com</small>
         </div>
@@ -18,11 +14,7 @@
     <div class="profile-dets">
       <p>
         Hi 👋. I'm a frontend developer with passion for creating user-friendly,
-        interactive and pixel-perfect user interface. creating user-friendly,
-        interactive and pixel-perfect user interface creating user-friendly,
-        interactive and pixel-perfect user interface creating user-friendly,
-        interactive and pixel-perfect user interface creating user-friendly,
-        interactive and pixel-perfect user interface
+        interactive and pixel-perfect user interface.
       </p>
     </div>
   </div>
@@ -108,7 +100,6 @@ export default {
   text-align: center;
 }
 .add_user .btn {
-  /* padding: 1rem; */
   background: var(--btn);
   border: solid 1px var(--btn);
   margin: 2rem 0.2rem;
