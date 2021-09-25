@@ -1,3 +1,8 @@
+import firebaseApp from "@/fb/init-firebase";
+import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
+import { getAuth } from "@firebase/auth";
+const db = getFirestore(firebaseApp);
+const auth = getAuth(firebaseApp);
 const state = {
   employees: [
     {
@@ -77,6 +82,7 @@ const state = {
       address: "Jand Way, Ijaniki",
     },
   ],
+  test: [],
 };
 
 const getters = {
@@ -87,18 +93,48 @@ const getters = {
   //   })
   // }
 };
-
 const actions = {
   // searchFilter({commit}, param) {
   //   commit('searchFilter', param)
   // }
+  async employeesList({ commit }) {
+    // ### One
+    const q = collection(db, "employees");
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id);
+    });
+    // Two
+    // getDocs(collection(db, 'employees')).forEach((doc) => {
+    //   console.log(doc.id)
+    // })
+    commit("employeesList");
+  },
+  async createEmployee({ commit }, { data }) {
+    try {
+      const docRef = await addDoc(
+        collection(auth.currentUser.uid, "employees"),
+        { data }
+      );
+      console.log("Document written with ID:", docRef.id);
+    } catch (e) {
+      console.error("Something went wrong");
+    }
+    commit("createEmloyee");
+  },
 };
 
 const mutations = {
-  searchFilter(state, param) {
-    return state.employees.filter((employee) => {
-      return employee.role.toLowerCase().includes(param.toLowerCase());
-    });
+  // searchFilter(state, param) {
+  //   return state.employees.filter((employee) => {
+  //     return employee.role.toLowerCase().includes(param.toLowerCase());
+  //   });
+  // },
+  employeesList(state, payload) {
+    state.test.unshift(payload);
+  },
+  createEmployee(state, payload) {
+    state.test = payload;
   },
 };
 
