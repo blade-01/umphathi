@@ -1,5 +1,5 @@
 import firebaseApp from "@/fb/init-firebase";
-import { getFirestore, collection, getDocs, query } from "firebase/firestore";
+import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
 import { getAuth } from "@firebase/auth";
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
@@ -99,21 +99,27 @@ const actions = {
   // }
   async employeesList({ commit }) {
     // ### One
-    const q = query(collection(db, "employees"));
+    const q = collection(db, "employees");
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       console.log(doc.id);
     });
     // Two
-    // getDocs(query(collection(db, 'employees'))).forEach((doc) => {
+    // getDocs(collection(db, 'employees')).forEach((doc) => {
     //   console.log(doc.id)
     // })
     commit("employeesList");
   },
-  createEmployee({ commit }) {
-    getDocs(query(collection(auth, "employees"))).forEach((doc) => {
-      console.log(doc.id);
-    });
+  async createEmployee({ commit }, { data }) {
+    try {
+      const docRef = await addDoc(
+        collection(auth.currentUser.uid, "employees"),
+        { data }
+      );
+      console.log("Document written with ID:", docRef.id);
+    } catch (e) {
+      console.error("Something went wrong");
+    }
     commit("createEmloyee");
   },
 };
