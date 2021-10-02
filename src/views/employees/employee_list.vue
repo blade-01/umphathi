@@ -32,7 +32,7 @@
           </div>
           <div class="flex_two">
             <p class="title_tag">Joining Date</p>
-            <p>{{ formatDate(employee.joinedAt) }}</p>
+            <p>{{ formatDate(employee.joinDate) }}</p>
           </div>
         </div>
       </div>
