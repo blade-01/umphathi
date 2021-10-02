@@ -4,7 +4,11 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  signOut
 } from "firebase/auth";
+import { doc, setDoc, getFirestore } from "firebase/firestore";
+const db = getFirestore(firebaseApp);
+const auth = getAuth(firebaseApp);
 
 const state = {
   user: [],
@@ -17,7 +21,6 @@ const getters = {
 
 const actions = {
   signIn({ commit }, { email, password }) {
-    const auth = getAuth(firebaseApp);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user.email;
@@ -29,18 +32,23 @@ const actions = {
         let errorMessage = error.code;
         if (errorMessage == "auth/user-not-found") {
           errorMessage = "Account doesn't exist";
+        } else if (errorMessage == "auth/wrong-password") {
+          errorMessage = "Provide a valid password";
         } else {
           errorMessage = "";
-        }
+        } 
         commit("showError", errorMessage);
       });
   },
-  signUp({ commit }, { email, password }) {
-    const auth = getAuth(firebaseApp);
+  signUp({ commit }, { email, password}) {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user.email;
-        console.log(user, 'account has been created');
+        const data = {
+          email: email
+        }
+        return setDoc(doc(db, "users", userCredential.user.uid), data)
+      })
+      .then(() => {
         router.push("/employee_list");
         commit("signUp");
       })
@@ -54,14 +62,26 @@ const actions = {
         commit("showError", errorMessage);
       });
   },
+  signOut({commit}) {
+    signOut(auth).then(() => {
+      router.push("/login")
+      console.log("User Signed Out")
+    }).catch((error) => {
+      console.log(error)
+    })
+    commit("signOut")
+  }
 };
 
 const mutations = {
-  signIn(state, payload) {
-    state.user = payload;
+  signIn(state) {
+    state.user
   },
   signUp(state, payload) {
     state.error = payload;
+  },
+  signOut(state) {
+    state.user
   },
   showError(state, payload) {
     state.error = payload;

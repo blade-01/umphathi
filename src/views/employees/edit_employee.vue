@@ -174,7 +174,7 @@
             @focus="v$.role.$reset()"
             :class="{ err: v$.role.$error }"
           />
-          <small :class="{ 'err-mssg': v$.gender.$error }" class="hide"
+          <small :class="{ 'err-mssg': v$.role.$error }" class="hide"
             >required</small
           >
         </div>

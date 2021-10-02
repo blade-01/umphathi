@@ -50,19 +50,19 @@
         </div>
       </div>
       <div class="input-field">
-        <label for="address">Bio</label>
+        <label for="biography">Bio</label>
         <textarea
           type="text"
-          name="address"
-          id="address"
+          name="biography"
+          id="biography"
           rows="5"
           cols="5"
-          v-model="user.address"
-          @blur="v$.address.$touch()"
-          @focus="v$.address.$reset()"
-          :class="{ err: v$.address.$error }"
+          v-model="user.bio"
+          @blur="v$.bio.$touch()"
+          @focus="v$.bio.$reset()"
+          :class="{ err: v$.bio.$error }"
         ></textarea>
-        <small :class="{ 'err-mssg': v$.address.$error }" class="hide"
+        <small :class="{ 'err-mssg': v$.bio.$error }" class="hide"
           >Just a little info about yourself, no?</small
         >
       </div>
@@ -90,29 +90,13 @@ export default {
       firstName: "",
       lastName: "",
       email: "",
-      address: "",
-      state: "",
-      city: "",
-      mobileNumber: "",
-      emergencyNumber: "",
-      postCode: "",
-      joinDate: "",
-      role: "",
-      gender: "",
+      bio: ""
     });
     const rules = {
       firstName: { required },
       lastName: { required },
       email: { required, email },
-      address: { required },
-      state: { required },
-      city: { required },
-      mobileNumber: { required },
-      emergencyNumber: { required },
-      postCode: { required },
-      joinDate: { required },
-      role: { required },
-      gender: { required },
+      bio: { required }
     };
     const router = useRouter();
     const v$ = useVuelidate(rules, user);

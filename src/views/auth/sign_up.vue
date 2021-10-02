@@ -4,9 +4,6 @@
       <Header />
       <form class="card" @submit.prevent="signUp(state.email, state.password)">
         <h2>Create an account</h2>
-        <div class="error" :class="{ err: errMssg }" v-if="errMssg">
-          {{ errMssg }}
-        </div>
         <div class="input-field">
           <label for="email">Email</label>
           <input
@@ -19,9 +16,7 @@
           />
           <small
             :class="{ 'err-mssg': v$.email.$error }"
-            v-if="v$.email.$error"
-            class="hide"
-            >Please provide a valid email</small
+            v-if="v$.email.$error">Please provide a valid email</small
           >
         </div>
         <div class="input-field">
@@ -36,10 +31,11 @@
           />
           <small
             :class="{ 'err-mssg': v$.password.$error }"
-            v-if="v$.password.$error"
-            class="hide"
-            >Please provide a strong password</small
+            v-if="v$.password.$error">Please provide a strong password</small
           >
+          <small :class="{ 'err-mssg': errMssg }" v-if="errMssg">
+            {{ errMssg }}
+          </small>
         </div>
         <input type="submit" value="SIGN UP" />
       </form>
@@ -147,23 +143,11 @@ export default {
 .color a {
   color: var(--btn);
 }
-.error {
-  text-align: center;
-  margin-top: 1rem;
-  background: #fa5d5d;
-  color: var(--white);
-  padding: 0.5rem;
-  border-radius: 5px;
-}
 .err {
   border: solid 1px #fa5d5d !important;
 }
 .err-mssg {
   color: #fa5d5d !important;
-}
-.hide {
-  color: transparent;
-  transition: color ease 0.4s;
 }
 @media screen and (min-width: 700px) {
   .sign_up {

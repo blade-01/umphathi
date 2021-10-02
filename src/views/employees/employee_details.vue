@@ -1,8 +1,11 @@
 <template>
   <buttons>
+    <button class="back-btn btn flex-between" @click="goBack"><span class="mdi mdi-chevron-left"></span> Back</button>
+  </buttons>
+  <buttons>
     <div class="input-field flex-buttons">
-      <button class="back-btn btn" @click="goBack">Back</button>
       <button class="del-btn btn" @click="onDelete">Delete</button>
+      <button class="edit-btn btn" @click="gotoEdit(employee_id)">Edit</button>
     </div>
   </buttons>
   <div class="employee_dets">
@@ -34,7 +37,7 @@
         >{{ employee_id }}? This action cannot be reversed.
       </p>
       <div class="flex-end">
-        <button class="back-btn btn" depressed @click="cancel">Cancel</button>
+        <button class="cancel-btn btn" depressed @click="cancel">Cancel</button>
         <button class="del-btn btn" depressed @click="delEmployee">
           Delete
         </button>
@@ -69,6 +72,9 @@ export default {
     const delEmployee = () => {
       modal.value = false;
     };
+    const gotoEdit = (id) => {
+      router.push({name: "Edit", params: {id}})
+    }
     return {
       employee_id,
       goBack,
@@ -76,6 +82,7 @@ export default {
       onDelete,
       delEmployee,
       cancel,
+      gotoEdit
     };
   },
 };
@@ -121,8 +128,20 @@ export default {
   flex-basis: 10%;
 }
 .back-btn {
+  background: none !important;
+  border: none !important;
+  color: var(--text);
+  padding: 0;
+  text-transform: capitalize;
+  margin-bottom: 2rem;
+}
+.cancel-btn {
   background: #333 !important;
   border: solid 1px #333 !important;
+}
+.edit-btn {
+  background: var(--btn) !important;
+  border: solid 1px var(--btn) !important;
 }
 .flex-buttons {
   display: flex;
@@ -159,8 +178,8 @@ export default {
   width: 300px;
   background: var(--white);
   transform: translate(-50%, -50%) scale(0);
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -100px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -60px !important;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   animation: scaleIn 0.4s forwards;
 }
 @keyframes scaleIn {
