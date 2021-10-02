@@ -47,7 +47,7 @@
 import searchbar from "@/components/reusables_/search_bar.vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import moment from "moment";
 export default {
   components: {
@@ -66,6 +66,9 @@ export default {
     const formatDate = (date) => {
       return moment(date).format("DD MMM YYYY");
     };
+    onMounted(() => {
+      store.dispatch("getEmployees")
+    })
     return {
       employees,
       viewEmployee,

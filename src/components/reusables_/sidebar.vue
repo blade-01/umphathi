@@ -22,7 +22,7 @@
         ></router-link>
       </div>
       <div class="logout hide-on-sm">
-        <router-link to="/" class="mdi mdi-logout"></router-link>
+        <span class="mdi mdi-logout" @click="signOut"></span>
       </div>
     </div>
   </div>
@@ -37,19 +37,21 @@
         <router-link to="/edit_profile" class="mdi mdi-cog tag" @click="close">
           <p>Settings</p>
         </router-link>
-        <router-link to="/" class="mdi mdi-logout tag" @click="close">
+        <span class="mdi mdi-logout tag" @click="signOut">
           <p>Logout</p>
-        </router-link>
+        </span>
       </div>
     </div>
   </aside>
 </template>
 <script>
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 import { ref } from "vue";
 export default {
   setup() {
     const router = useRouter();
+    const store = useStore();
     const goHome = () => {
       router.push("/employee_list");
     };
@@ -67,6 +69,10 @@ export default {
         }
       });
     };
+    const signOut = () => {
+      store.dispatch("signOut");
+      close();
+    }
     return {
       goHome,
       router,
@@ -74,6 +80,7 @@ export default {
       open,
       close,
       closeTab,
+      signOut
     };
   },
 };
@@ -162,6 +169,9 @@ export default {
 .aside-icons .tag p {
   margin-left: 0.7rem;
   color: var(--text);
+}
+.mdi-logout {
+  cursor: pointer;
 }
 @media screen and (min-width: 700px) {
   .sidebar {

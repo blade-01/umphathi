@@ -63,7 +63,7 @@
           :class="{ err: v$.address.$error }"
         ></textarea>
         <small :class="{ 'err-mssg': v$.address.$error }" class="hide"
-          >You've got no place? 👀</small
+          >required</small
         >
       </div>
       <div class="flex-two">
@@ -174,7 +174,7 @@
             @focus="v$.role.$reset()"
             :class="{ err: v$.role.$error }"
           />
-          <small :class="{ 'err-mssg': v$.gender.$error }" class="hide"
+          <small :class="{ 'err-mssg': v$.role.$error }" class="hide"
             >required</small
           >
         </div>
@@ -207,6 +207,7 @@
 <script>
 import buttons from "@/components/reusables_/buttons.vue";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 import { ref } from "vue";
 import useVuelidate from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
@@ -216,10 +217,6 @@ export default {
   },
   setup() {
     const form = ref({
-      id: Math.random()
-        .toString(36)
-        .substring(7)
-        .toUpperCase(),
       firstName: "",
       lastName: "",
       email: "",
@@ -248,12 +245,35 @@ export default {
       gender: { required },
     };
     const router = useRouter();
+    const store = useStore();
     const v$ = useVuelidate(rules, form);
     const goHome = () => {
       router.go(-1);
     };
     const addEmployee = () => {
-      v$.value.$validate();
+      const data = {
+        id: Math.random()
+        .toString(36)
+        .substring(7)
+        .toUpperCase(),
+        firstName: form.value.firstName,
+        lastName: form.value.lastName,
+        email: form.value.email,
+        address: form.value.address,
+        state: form.value.state,
+        city: form.value.city,
+        mobileNumber: form.value.mobileNumber,
+        emergencyNumber: form.value.emergencyNumber,
+        postCode: form.value.postCode,
+        joinDate: form.value.joinDate,
+        role: form.value.role,
+        gender: form.value.gender,
+      }
+      if (v$.value.$invalid) {
+        v$.value.$validate();
+      } else {
+        store.dispatch("addEmployee", {employee: data})
+      }
     };
     return {
       goHome,

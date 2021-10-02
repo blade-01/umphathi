@@ -20,16 +20,23 @@
   </div>
 </template>
 <script>
-import { ref } from "vue";
-// import { useStore } from 'vuex'
+import { computed, ref } from "vue";
+import { useStore } from 'vuex'
 export default {
   setup() {
     const search = ref("");
-    // const store = useStore()
+    const store = useStore();
+    const employees = computed(() => store.getters.allEmployees);
     // const searchFilter = (param) => store.dispatch('searchFilter', param)
+    const searchFilter = computed(() => {
+      return employees.value.filter((employee) => {
+        return employee.role.toLowerCase().includes(search.value.toLowerCase())
+      })
+    })
     return {
       search,
-      // searchFilter
+      searchFilter,
+      employees
     };
   },
 };

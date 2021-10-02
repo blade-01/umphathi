@@ -9,3 +9,10 @@ const app = createApp(App);
 app.use(store);
 app.use(router);
 app.mount("#app");
+
+
+// onAuthStateChanged(auth, (user) => {
+//   if(!app || user) {
+//     app = createApp(App).use(router).use(store).mount('#app');
+//   } 
+// })
