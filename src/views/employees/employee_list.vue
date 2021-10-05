@@ -28,7 +28,7 @@
           </div>
           <div class="flex_two">
             <p class="title_tag">Phone Number</p>
-            <p>{{ employee.mobileNumber }}</p>
+            <p>{{ formatNumber(employee.mobileNumber) }}</p>
           </div>
           <div class="flex_two">
             <p class="title_tag">Joining Date</p>
@@ -66,10 +66,15 @@ export default {
     const formatDate = (date) => {
       return moment(date).format("DD MMM YYYY");
     };
+    const formatNumber = (number) => {
+      return number.replace(/[^0-9]/g, '')
+                   .replace(/(\d{3})(\d{4})(\d{3})/, '($1) $2-$3')
+    };
     onMounted(() => {
       store.dispatch("getEmployees")
     })
     return {
+      formatNumber,
       employees,
       viewEmployee,
       formatDate,

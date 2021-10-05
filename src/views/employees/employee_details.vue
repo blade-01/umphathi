@@ -8,25 +8,25 @@
       <button class="edit-btn btn" @click="gotoEdit(employee_id)">Edit</button>
     </div>
   </buttons>
-  <div class="employee_dets">
+  <div class="employee_dets" v-if="employee">
     <div class="info info_one">
       <h3>Basic Info</h3>
-      <h4>Animashaun Taofiq</h4>
-      <p>Frontend Developer</p>
+      <h4>{{employee.firstName}} {{employee.lastName}}</h4>
+      <p>{{employee.role}}</p>
     </div>
     <div class="info info_two">
       <h3>Contact Info</h3>
-      <p class="flex-between"><b>Email:</b>animashauntaofiq@me.com</p>
+      <p class="flex-between"><b>Email:</b>{{employee.email}}</p>
       <p class="flex-between">
         <b>Address:</b> 16, Odegbami Street Mafoloku, Oshodi
       </p>
-      <p class="flex-between"><b>State:</b> Lagos State</p>
-      <p class="flex-between"><b>City:</b> Oshodi</p>
-      <p class="flex-between"><b>Postal Code:</b> KDF15</p>
-      <p class="flex-between"><b>Mobile Number:</b> +2348108667883</p>
-      <p class="flex-between"><b>Emergency Number:</b> 08108667883</p>
-      <p class="flex-between"><b>Gender:</b> Male</p>
-      <p class="flex-between"><b>Date Joined:</b> 01 Feb 2019</p>
+      <p class="flex-between"><b>State:</b> {{employee.state}}</p>
+      <p class="flex-between"><b>City:</b> {{employee.city}}</p>
+      <p class="flex-between"><b>Postal Code:</b> {{employee.postCode}}</p>
+      <p class="flex-between"><b>Mobile Number:</b> {{formatNumber(employee.mobileNumber)}}</p>
+      <p class="flex-between"><b>Emergency Number:</b> {{formatNumber(employee.emergencyNumber)}}</p>
+      <p class="flex-between"><b>Gender:</b> {{employee.gender}}</p>
+      <p class="flex-between"><b>Date Joined:</b> {{formatDate(employee.joinDate)}}</p>
     </div>
   </div>
   <div class="modal" v-show="modal">
@@ -46,10 +46,12 @@
   </div>
 </template>
 <script>
-import { ref } from "vue";
+import { useStore } from "vuex";
+import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 // import { onMounted } from 'vue'
 import buttons from "@/components/reusables_/buttons.vue";
+import moment from "moment";
 export default {
   props: ["id"],
   components: {
@@ -70,13 +72,27 @@ export default {
       modal.value = false;
     };
     const delEmployee = () => {
-      modal.value = false;
+      // modal.value = false;
+      store.dispatch("deleteEmployee", employee_id.value)
     };
     const gotoEdit = (id) => {
       router.push({name: "Edit", params: {id}})
     }
+    const store = useStore();
+    const employee = computed(() => store.getters.singleEmployee);
+    store.dispatch("singleEmployee", employee_id.value)
+    const formatDate = (date) => {
+      return moment(date).format("DD MMM YYYY");
+    };
+    const formatNumber = (number) => {
+      return number.replace(/[^0-9]/g, '')
+                   .replace(/(\d{3})(\d{4})(\d{3})/, '($1) $2-$3')
+    };
     return {
       employee_id,
+      employee,
+      formatDate,
+      formatNumber,
       goBack,
       modal,
       onDelete,
