@@ -217,6 +217,10 @@ export default {
   },
   setup() {
     const form = ref({
+      id: Math.random()
+        .toString(36)
+        .substring(7)
+        .toUpperCase(),
       firstName: "",
       lastName: "",
       email: "",
@@ -251,28 +255,28 @@ export default {
       router.go(-1);
     };
     const addEmployee = () => {
-      const data = {
-        id: Math.random()
-        .toString(36)
-        .substring(7)
-        .toUpperCase(),
-        firstName: form.value.firstName,
-        lastName: form.value.lastName,
-        email: form.value.email,
-        address: form.value.address,
-        state: form.value.state,
-        city: form.value.city,
-        mobileNumber: form.value.mobileNumber,
-        emergencyNumber: form.value.emergencyNumber,
-        postCode: form.value.postCode,
-        joinDate: form.value.joinDate,
-        role: form.value.role,
-        gender: form.value.gender,
-      }
+      // const data = {
+      //   id: Math.random()
+      //   .toString(36)
+      //   .substring(7)
+      //   .toUpperCase(),
+      //   firstName: form.value.firstName,
+      //   lastName: form.value.lastName,
+      //   email: form.value.email,
+      //   address: form.value.address,
+      //   state: form.value.state,
+      //   city: form.value.city,
+      //   mobileNumber: form.value.mobileNumber,
+      //   emergencyNumber: form.value.emergencyNumber,
+      //   postCode: form.value.postCode,
+      //   joinDate: form.value.joinDate,
+      //   role: form.value.role,
+      //   gender: form.value.gender,
+      // }
       if (v$.value.$invalid) {
         v$.value.$validate();
       } else {
-        store.dispatch("addEmployee", {employee: data})
+        store.dispatch("addEmployee", form.value)
       }
     };
     return {

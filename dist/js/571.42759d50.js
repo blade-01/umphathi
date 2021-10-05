@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkumphathi"]=self["webpackChunkumphathi"]||[]).push([[571],{2571:function(n,e,t){t.r(e),t.d(e,{default:function(){return d}});var a=t(6252);(0,a.dD)("data-v-38f4b933");const r={class:"notification"},u=(0,a._)("p",null,"There is nothing here",-1),i=(0,a._)("p",null," Your notifications would appear here once you start adding your employees ",-1),o=[u,i];function s(n,e,t,u,i,s){return(0,a.wg)(),(0,a.iD)("div",r,o)}(0,a.Cn)();var c={};c.render=s,c.__scopeId="data-v-38f4b933";var d=c}}]);
-//# sourceMappingURL=571.42759d50.js.map

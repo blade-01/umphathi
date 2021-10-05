@@ -15,6 +15,7 @@
 import sidebar from "@/components/reusables_/sidebar.vue";
 import headtag from "@/components/reusables_/head_tag.vue";
 import { useRouter } from "vue-router";
+import { useStore } from 'vuex';
 export default {
   components: {
     sidebar,
@@ -25,6 +26,8 @@ export default {
     const goHome = () => {
       router.push("/employee_list");
     };
+    const store = useStore()
+    store.dispatch("getEmployees")
     return {
       goHome,
       router,
